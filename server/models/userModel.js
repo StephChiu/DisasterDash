@@ -8,8 +8,8 @@ const userSchema = new Schema({
   username: {type: String, required: true, unique: true},
   password: {type: String, required: true, unique: true},
   email: String,
-  userCity: String,
-  userState: String,
+  city: String,
+  state: String,
   donation: String,
 })
 

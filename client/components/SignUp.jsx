@@ -6,7 +6,7 @@ const SignUp = (props) => {
     return ( 
       <div className="signupPage">
       Sign Up
-      <form method="POST" action="/signup">
+      <form className="signupForm" method="POST" action="/signup" encType="application/x-www-form-urlencoded">
         <label>
           Create Username
           <input name="username" type="text"></input>
@@ -29,7 +29,7 @@ const SignUp = (props) => {
         </label>
         <input type="submit" value="Submit"></input>
       </form>
-      <input type="button" value="Login" onClick={props.switchLogin}></input>
+      <input type="button" value="Login Page" onClick={props.switchLogin}></input>
       </div>
      );
 }

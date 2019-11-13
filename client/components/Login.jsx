@@ -4,7 +4,7 @@ const Login = (props) => {
     return ( 
       <div className="loginPage">
       Login
-      <form method="POST" action="/login">
+      <form onSubmit={(event) => {props.handleLogin(event)}}>
         <label>
           Username
           <input name="username" type="text"></input>

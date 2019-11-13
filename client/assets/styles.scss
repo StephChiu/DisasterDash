@@ -117,10 +117,18 @@ hr {
     box-shadow: black 0px 5px 10px;
 }
 
-.userButtons {
-    justify-self: flex-end;
+.navButtons {
+  margin: 10px;
 }
 
+.greeting {
+  color: white;
+}
+
+.signupForm {
+  padding: 10px;
+  margin: 10px;
+}
 
 //landing page styles
 #landing {
