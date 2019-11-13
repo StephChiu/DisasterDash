@@ -27,20 +27,9 @@ const MainContainer = () => {
   const [location, setLoc] = useState("");
 
   // upon rendering, the fetch will occur and the hook 'newsUpdate' should update the state
-  useEffect(() => {
-    fetch('/news')
-    .then(resp => {
-        return resp.json()})
-    .then(data => {
-        newsUpdate([...data])
-    })
-    .catch((err) => {
-        console.log(err)
-    })
-},[])
 
   const updateLocation = (newLoc) =>{
-    console.log(newLoc);
+    console.log("updated location", newLoc);
     setLoc(newLoc);
   };
     //easter egg for sandstorm- just need to click the fire icon
@@ -86,7 +75,7 @@ const MainContainer = () => {
             <NavLink className="navLinks" to="/fire">Wild Fire</NavLink>
             <NavLink className="navLinks" to="/hurricane">Hurricane</NavLink>
             <NavLink className="navLinks" to="/tornado">Tornado</NavLink>
-            <button className="navLinks"> signin</button>
+            <button className="navLinks" > signin</button>
             <button className="navLinks"> signup</button>
           </Navbar>
           <Switch>

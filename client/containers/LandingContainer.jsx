@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Particles from 'react-particles-js'
 
 //This container was made to display the landing page
@@ -9,6 +9,17 @@ import Particles from 'react-particles-js'
 
 const LandingContainer = (props) => {
   const [location, setTempLoc] = useState("");
+
+  useEffect(() => {
+    fetch('/loc')
+    .then(resp => resp.json())
+    .then(data => {
+        setTempLoc(data.city);
+    })
+    .catch((err) => {
+        console.log(err)
+    })
+  },[])
   
   const tempLoc = (e) =>{
     console.log(e.target.value);
@@ -21,7 +32,7 @@ const LandingContainer = (props) => {
         <h2>DisasterDash:</h2>
         <span>Keep Up With The Disaster</span>
         <p>Stay updated, know your coverage, and keep connected</p>
-        <input onChange= {tempLoc} type="text"></input><button onClick={() => props.updateLocation(location)}>Search</button>
+        <input onChange= {tempLoc} type="text" value={location}></input><button onClick={() => props.updateLocation(location)}>Search</button>
       </div>
       <div id="particles">
       <Particles
