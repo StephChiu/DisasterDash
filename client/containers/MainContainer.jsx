@@ -23,16 +23,48 @@ import {
 
 const MainContainer = () => {
   //instantiating hook in this component so that the fetch occurs earlier
-  const [news, newsUpdate] = useState([[{title:'Loading...', link:'#'}],[{title:'Loading...', link:'#'}],[{title:'Loading...', link:'#'}]]);
+  const [newsEarthquake, setEarthquake] = useState([]);
+  const [newsFire, setFire] = useState([]);
+  const [newsTornado, setTornado] = useState([]);
+  const [newsHurricane, setHurricane] = useState([]);
   const [location, setLoc] = useState("");
 
   // upon rendering, the fetch will occur and the hook 'newsUpdate' should update the state
 
   const updateLocation = (newLoc) =>{
     console.log("updated location", newLoc);
-    setLoc(newLoc);
+    newLoc = newLoc.replace(" ", "+");
+    const endPoint = `/news?loc=${newLoc}&dis=earthquake`;
+    fetch(endPoint)
+    .then(body => body.json())
+    .then(body => {
+      setEarthquake(body);
+      setLoc(newLoc);
+    })
+    const fireEndPoint = `/news?loc=${newLoc}&dis=fire`;
+    fetch(fireEndPoint)
+    .then(body => body.json())
+    .then(body => {
+      setFire(body);
+      setLoc(newLoc);
+    })
+    const hurricaneEndPoint = `/news?loc=${newLoc}&dis=hurricane`;
+    fetch(hurricaneEndPoint)
+    .then(body => body.json())
+    .then(body => {
+      setHurricane(body);
+      setLoc(newLoc);
+    })
+    const tornadoEndPoint = `/news?loc=${newLoc}&dis=tornado`;
+    fetch(tornadoEndPoint)
+    .then(body => body.json())
+    .then(body => {
+      setTornado(body);
+      setLoc(newLoc);
+    })
   };
-    //easter egg for sandstorm- just need to click the fire icon
+
+  //easter egg for sandstorm- just need to click the fire icon
   const Easteregg = () => {
     const audio = new Audio(
       'https://iringtone.net/rington/file?id=8454&type=sound&name=mp3'
@@ -80,16 +112,16 @@ const MainContainer = () => {
           </Navbar>
           <Switch>
         <Route path="/earthquake">
-          <ContentContainer news={news}/>
+          <ContentContainer location={location} news={newsEarthquake}/>
         </Route>
         <Route path="/fire">
-          <ContentContainer news={news}/>
+          <ContentContainer location={location} news={newsFire}/>
         </Route>
         <Route path="/hurricane">
-          <ContentContainer news={news}/>
+          <ContentContainer location={location} news={newsHurricane}/>
         </Route>
         <Route path="/tornado">
-          <ContentContainer news={news}/>
+          <ContentContainer location={location} news={newsTornado}/>
         </Route>
         <Route path="/">
           <LandingContainer updateLocation={updateLocation}/>
@@ -100,6 +132,5 @@ const MainContainer = () => {
   );
 }
 
-//
  
 export default MainContainer;
