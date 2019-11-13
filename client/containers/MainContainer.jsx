@@ -30,7 +30,14 @@ const MainContainer = () => {
 
   const updateLocation = (newLoc) =>{
     console.log("updated location", newLoc);
-    setLoc(newLoc);
+    newLoc = newLoc.replace(" ", "+");
+    console.log(`/news?loc=${newLoc}&dis=fire`);
+    fetch(`/news?loc=${newLoc}dis=fire`)
+    .then(body => body.json())
+    .then(body => {
+      console.log(body);
+      setLoc(newLoc);
+    })
   };
     //easter egg for sandstorm- just need to click the fire icon
   const Easteregg = () => {
