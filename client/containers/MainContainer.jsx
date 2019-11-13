@@ -80,13 +80,13 @@ const MainContainer = () => {
                 className="d-inline-block align-top"
                 onClick={()=> Easteregg()}
             />
-            <Link className="navLinks" to="/">Verifire</Link>
+            <Link className="navLinks" to="/">DisasterDash</Link>
             </Navbar.Brand>
             <NavLink className="navLinks" to="/main">Content</NavLink>
           </Navbar>
           <Switch>
         <Route path="/main">
-          <ContentContainer news={news}/>
+          <ContentContainer location={location} news={news}/>
         </Route>
         <Route path="/">
           <LandingContainer updateLocation={updateLocation}/>
