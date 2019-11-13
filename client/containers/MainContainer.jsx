@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import ContentContainer from './ContentContainer.jsx';
 import LandingContainer from './LandingContainer.jsx';
+import SignUp from '../components/SignUp.jsx';
+import Login from '../components/Login.jsx';
 
 //we utilized react-bootstrap to style our page with pre-made components
 import Navbar from 'react-bootstrap/Navbar'
+import Button from 'react-bootstrap/Button'
 
 //we imported the next set to utilize react-router as we wanted to route in a landing page
 import {
@@ -28,8 +31,73 @@ const MainContainer = () => {
   const [newsTornado, setTornado] = useState([]);
   const [newsHurricane, setHurricane] = useState([]);
   const [location, setLoc] = useState("");
+  const [signupPage, setSignup] = useState(false);
+  const [loginPage, setLogin] = useState(false);
+  const [user, setUser] = useState('');
 
   // upon rendering, the fetch will occur and the hook 'newsUpdate' should update the state
+  useEffect(() => {
+    fetch('/news')
+    .then(resp => {
+        return resp.json()})
+    .then(data => {
+        newsUpdate([...data])
+    })
+    .catch((err) => {
+        console.log(err)
+    })
+  },[])
+
+  // conditional rendering for sign up  
+  const signupPopUp = () => {
+    if (signupPage == false) {
+      setSignup(true);
+      setLogin(false);
+    } else {
+      setSignup(false);
+      setLogin(false);
+    }
+  }
+
+  const switchLogin = () => {
+    setSignup(false);
+    setLogin(true);
+  }
+
+  let SignUpDisplay = null;
+  if (signupPage === true) {
+    SignUpDisplay = <SignUp className="signup" switchLogin={switchLogin}/>
+  }
+
+  // conditional rendering for login
+  const loginPopUp = () => {
+    if (loginPage == false) {
+      setLogin(true);
+      setSignup(false);
+    } else {
+      setLogin(false);
+      setSignup(false);
+    }
+  }
+
+  const handleLogin = (event) => {
+    event.preventDefault();
+    fetch('/login', {
+      method: 'POST',
+      body: new URLSearchParams(new FormData(event.target))
+    })
+    .then(res => res.json())
+    .then(data => {
+      setUser(`Welcome ${data}!`)
+    })
+    .catch(err => console.log('error in login fetch', err))
+    setLogin(false);
+  }
+
+  let LoginDisplay = null;
+  if (loginPage === true) {
+    LoginDisplay = <Login handleLogin={handleLogin}/>
+  }
 
   const updateLocation = (newLoc) =>{
     console.log("updated location", newLoc);
@@ -90,6 +158,8 @@ const MainContainer = () => {
 
   return ( 
     <article id ="mainContainer">
+      {SignUpDisplay}
+      {LoginDisplay}
         <Router>
           <Navbar bg="dark" variant="dark">
             <Navbar.Brand>
@@ -107,8 +177,9 @@ const MainContainer = () => {
             <NavLink className="navLinks" to="/fire">Wild Fire</NavLink>
             <NavLink className="navLinks" to="/hurricane">Hurricane</NavLink>
             <NavLink className="navLinks" to="/tornado">Tornado</NavLink>
-            <button className="navLinks" > signin</button>
-            <button className="navLinks"> signup</button>
+            <Button className="navButtons" variant="outline-light" onClick={loginPopUp}>Login</Button>
+            <Button className="navButtons" variant="outline-light"  onClick={signupPopUp}>Sign Up</Button>
+            <Navbar.Text fixed="right">{user}</Navbar.Text>
           </Navbar>
           <Switch>
         <Route path="/earthquake">
