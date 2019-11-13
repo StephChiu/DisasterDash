@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Particles from 'react-particles-js'
 
 //This container was made to display the landing page
@@ -8,13 +8,20 @@ import Particles from 'react-particles-js'
 //the particles in this container are for the polygon mask before entering the page
 
 const LandingContainer = (props) => {
+    const [location, setTempLoc] = useState("");
+    
+    const tempLoc = (e) =>{
+        console.log(e.target.value);
+        setTempLoc(e.target.value);
+    }
+
     return ( 
         <div id="landing">
             <div id="landingInfo">
-
-                <h2>Verifire:</h2>
-                <span>Keep Up With The Heat</span>
+                <h2>DisasterDash:</h2>
+                <span>Keep Up With The Disaster</span>
                 <p>Stay updated, know your coverage, and keep connected</p>
+                <input onChange= {tempLoc} type="text"></input><button onClick={() => props.updateLocation(location)}>Search</button>
             </div>
             <div id="particles">
             <Particles
@@ -92,7 +99,7 @@ const LandingContainer = (props) => {
                     }
                 }} />
                 </div>
-                <p id="company">by aBANTia</p>
+                <p id="company">by Magitech</p>
         </div>
      );
 }
