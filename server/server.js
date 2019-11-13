@@ -9,6 +9,7 @@ const io = require('socket.io')(http);
 
 const newsController = require('./controllers/newsController');
 const messageController = require('./controllers/messageController');
+const geolocController = require('./controllers/geolocController')
 
 app.use(express.json());
 app.use(express.static('assets'))
@@ -17,6 +18,10 @@ app.use(express.static('assets'))
 app.get('/', (req, res) => {
     res.status(200).sendFile(path.join(__dirname, '../index.html'));
 });
+
+app.get('/loc', geolocController.getCurrentLoc,(req,res)=> {
+  res.status(200).json(res.locals.locData);
+})
 
 //'/main' route redirect
 app.get('/main', (req, res) => {
