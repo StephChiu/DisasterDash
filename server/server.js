@@ -17,6 +17,7 @@ mongoose.connect(MONGO_URI, {
 })
 .then(() => console.log('Connected to Mongo DB.'))
 .catch(err => console.log(err));
+const geolocController = require('./controllers/geolocController')
 
 app.use(express.json());
 app.use(express.static('assets'))
@@ -25,6 +26,10 @@ app.use(express.static('assets'))
 app.get('/', (req, res) => {
     res.status(200).sendFile(path.join(__dirname, '../index.html'));
 });
+
+app.get('/loc', geolocController.getCurrentLoc,(req,res)=> {
+  res.status(200).json(res.locals.locData);
+})
 
 //'/main' route redirect
 app.get('/main', (req, res) => {

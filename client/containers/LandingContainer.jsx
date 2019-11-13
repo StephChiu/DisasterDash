@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Particles from 'react-particles-js'
 
 //This container was made to display the landing page
@@ -8,12 +8,7 @@ import Particles from 'react-particles-js'
 //the particles in this container are for the polygon mask before entering the page
 
 const LandingContainer = (props) => {
-    const [location, setTempLoc] = useState("");
-    
-    const tempLoc = (e) =>{
-        console.log(e.target.value);
-        setTempLoc(e.target.value);
-    }
+  const [location, setTempLoc] = useState("");
 
     return ( 
         <div id="landing">
