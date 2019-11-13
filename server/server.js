@@ -3,6 +3,10 @@ const app = express();
 const path = require('path');
 const PORT = 3000;
 
+// Web Sockets
+const http = require('http').createServer(app);
+const io = require('socket.io')(http);
+
 const newsController = require('./controllers/newsController');
 const messageController = require('./controllers/messageController');
 
@@ -65,6 +69,24 @@ app.use((err, req, res, next) => {
     res.sendStatus(500);
 });
 
-app.listen(PORT, () => {
-    console.log(`Server listening on port: ${PORT}`);
+// app.listen(PORT, () => {
+//     console.log(`Server listening on port: ${PORT}`);
+// });
+
+
+// Web Sockets Implementation
+io.on('connection', function(socket) {
+  console.log('a user connected', socket);
+  socket.on('disconnect', function() {
+    console.log('user disconnected');
+  })
+  // socket.emit('news', { hello: 'world' });
+  // socket.on('my other event', function (data) {
+  //   console.log(data);
+  // });
 });
+
+http.listen(PORT, () => {
+  console.log(`HTTP Server on :${PORT}`);
+})
+
