@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import ContentContainer from './ContentContainer.jsx';
 import LandingContainer from './LandingContainer.jsx';
+import SignUp from '../components/SignUp.jsx';
+import Login from '../components/Login.jsx';
 
 //we utilized react-bootstrap to style our page with pre-made components
 import Navbar from 'react-bootstrap/Navbar'
@@ -25,6 +27,8 @@ const MainContainer = () => {
   //instantiating hook in this component so that the fetch occurs earlier
   const [news, newsUpdate] = useState([[{title:'Loading...', link:'#'}],[{title:'Loading...', link:'#'}],[{title:'Loading...', link:'#'}]]);
   const [location, setLoc] = useState("");
+  const [signupPage, setSignup] = useState(false);
+  const [loginPage, setLogin] = useState(false);
 
   // upon rendering, the fetch will occur and the hook 'newsUpdate' should update the state
   useEffect(() => {
@@ -37,7 +41,44 @@ const MainContainer = () => {
     .catch((err) => {
         console.log(err)
     })
-},[])
+  },[])
+
+  // conditional rendering for sign up  
+  const signupPopUp = () => {
+    if (signupPage == false) {
+      setSignup(true);
+      setLogin(false);
+    } else {
+      setSignup(false);
+      setLogin(false);
+    }
+  }
+
+  const switchLogin = () => {
+    setSignup(false);
+    setLogin(true);
+  }
+
+  let SignUpDisplay = null;
+  if (signupPage === true) {
+    SignUpDisplay = <SignUp switchLogin={switchLogin}/>
+  }
+
+  // // conditional rendering for login
+  const loginPopUp = () => {
+    if (loginPage == false) {
+      setLogin(true);
+      setSignup(false);
+    } else {
+      setLogin(false);
+      setSignup(false);
+    }
+  }
+
+  let LoginDisplay = null;
+  if (loginPage === true) {
+    LoginDisplay = <Login/>
+  }
 
   const updateLocation = (newLoc) =>{
     console.log(newLoc);
@@ -69,6 +110,8 @@ const MainContainer = () => {
 
   return ( 
     <article id ="mainContainer">
+      {SignUpDisplay}
+      {LoginDisplay}
         <Router>
           <Navbar bg="dark" variant="dark">
             <Navbar.Brand>
@@ -83,14 +126,16 @@ const MainContainer = () => {
             <Link className="navLinks" to="/">Verifire</Link>
             </Navbar.Brand>
             <NavLink className="navLinks" to="/main">Content</NavLink>
+            <button className="userButtons" onClick={signupPopUp}>Sign Up</button>
+            <button className="userButtons" onClick={loginPopUp}>Login</button>
           </Navbar>
           <Switch>
-        <Route path="/main">
-          <ContentContainer news={news}/>
-        </Route>
-        <Route path="/">
-          <LandingContainer updateLocation={updateLocation}/>
-        </Route>
+            <Route path="/main">
+              <ContentContainer news={news}/>
+            </Route>
+            <Route path="/">
+              <LandingContainer updateLocation={updateLocation}/>
+            </Route>
         </Switch>
       </Router>
     </article>

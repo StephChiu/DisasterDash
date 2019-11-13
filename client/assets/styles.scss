@@ -1,4 +1,4 @@
-//NewsContianer styling
+//NewsContainer styling
 #tabs {
     display: flex;
 }
@@ -114,6 +114,10 @@ hr {
 
 .navbar {
     box-shadow: black 0px 5px 10px;
+}
+
+.userButtons {
+    justify-self: flex-end;
 }
 
 

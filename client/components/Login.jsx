@@ -2,7 +2,20 @@ import React from 'react';
 
 const Login = (props) => {
     return ( 
-        <p>login</p>
+      <div className="loginPage">
+      Login
+      <form method="POST" action="/login">
+        <label>
+          Username
+          <input name="username" type="text"></input>
+        </label>
+        <label>
+          Password
+          <input name="password" type="password"></input>
+        </label>
+        <input type="submit" value="Login"></input>
+      </form>
+      </div>
      );
 }
  

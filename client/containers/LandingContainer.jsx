@@ -24,7 +24,7 @@ const LandingContainer = (props) => {
                 <input onChange= {tempLoc} type="text"></input><button onClick={() => props.updateLocation(location)}>Search</button>
             </div>
             <div id="particles">
-            <Particles
+            {/* <Particles
                 params={{
                     // Maximum Frames Per Second
                     "fps_limit": 60,
@@ -97,7 +97,7 @@ const LandingContainer = (props) => {
                             }
                         }
                     }
-                }} />
+                }} /> */}
                 </div>
                 <p id="company">by Magitech</p>
         </div>
