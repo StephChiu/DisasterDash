@@ -82,10 +82,24 @@ const MainContainer = () => {
             />
             <Link className="navLinks" to="/">Verifire</Link>
             </Navbar.Brand>
-            <NavLink className="navLinks" to="/main">Content</NavLink>
+            <NavLink className="navLinks" to="/earthquake">Earthquake</NavLink>
+            <NavLink className="navLinks" to="/fire">Wild Fire</NavLink>
+            <NavLink className="navLinks" to="/hurricane">Hurricane</NavLink>
+            <NavLink className="navLinks" to="/tornado">Tornado</NavLink>
+            <button className="navLinks"> signin</button>
+            <button className="navLinks"> signup</button>
           </Navbar>
           <Switch>
-        <Route path="/main">
+        <Route path="/earthquake">
+          <ContentContainer news={news}/>
+        </Route>
+        <Route path="/fire">
+          <ContentContainer news={news}/>
+        </Route>
+        <Route path="/hurricane">
+          <ContentContainer news={news}/>
+        </Route>
+        <Route path="/tornado">
           <ContentContainer news={news}/>
         </Route>
         <Route path="/">
