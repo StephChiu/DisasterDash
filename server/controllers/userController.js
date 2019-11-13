@@ -13,7 +13,6 @@ userController.getAllUsers = (req, res, next) => {
 };
 
 userController.createUser = (req, res, next) => {
-  console.log('req.body --> ', req.body)
   const { username, password, email, city, state } = req.body;
   User.create({ username, password, email, city, state }, (err, doc) => {
     if (err) {
@@ -29,17 +28,12 @@ userController.createUser = (req, res, next) => {
 userController.verifyUser = (req, res, next) => {
   const { username, password } = req.body;
   User.find({ username }, (err, doc)=>{
-    if(err) {
-      console.log()
-      res.redirect('/main');
-    }
-    if (doc.length === 0) {
-      console.log('Error: Unable to find User in DB')
-      res.redirect('/main');
+    if(err || doc.length === 0) {
+      res.redirect('/main')
     } else {
       bcrypt.compare(password, doc[0].password, (error, match) => {
         if(error) { 
-          return res.redirect('/main');
+          throw error;
         } 
         if(match) {
           console.log('User entered correct password');
@@ -48,12 +42,11 @@ userController.verifyUser = (req, res, next) => {
           return next();
         }
         else { 
-          res.redirect('/main');
+          res.redirect('/main')
         }
       });
     }
   });
-
 };
 
 

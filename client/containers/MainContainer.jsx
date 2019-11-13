@@ -34,7 +34,6 @@ const MainContainer = () => {
   const [signupPage, setSignup] = useState(false);
   const [loginPage, setLogin] = useState(false);
   const [user, setUser] = useState('');
-  const [userGreeting, setGreeting] = useState(false);
 
   // upon rendering, the fetch will occur and the hook 'newsUpdate' should update the state
   useEffect(() => {
@@ -89,22 +88,15 @@ const MainContainer = () => {
     })
     .then(res => res.json())
     .then(data => {
-      setUser(data)
+      setUser(`Welcome ${data}!`)
     })
     .catch(err => console.log('error in login fetch', err))
     setLogin(false);
-    setGreeting(true);
   }
 
   let LoginDisplay = null;
   if (loginPage === true) {
     LoginDisplay = <Login handleLogin={handleLogin}/>
-  }
-
-  // conditional rendering for greeting after login
-  let greeting = null;
-  if (userGreeting === true) {
-    greeting = `Welcome ${user}!`
   }
 
   const updateLocation = (newLoc) =>{
@@ -187,7 +179,7 @@ const MainContainer = () => {
             <NavLink className="navLinks" to="/tornado">Tornado</NavLink>
             <Button className="navButtons" variant="outline-light" onClick={loginPopUp}>Login</Button>
             <Button className="navButtons" variant="outline-light"  onClick={signupPopUp}>Sign Up</Button>
-            <Navbar.Text fixed="right">{greeting}</Navbar.Text>
+            <Navbar.Text fixed="right">{user}</Navbar.Text>
           </Navbar>
           <Switch>
         <Route path="/earthquake">
