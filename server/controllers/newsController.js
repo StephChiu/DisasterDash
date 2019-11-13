@@ -5,15 +5,15 @@ const newsController = {};
 //getNews middleware scrapes titles and links from source sites, as specified in server.js
 newsController.getNews = (req, res, next) => {
   let location = req.query.loc;
-  console.log('loc', location);
+  location = location.replace(" ", "+");
   let disaster = req.query.dis;
-  console.log('dis', disaster);
-  console.log(`https://newsapi.org/v2/top-headlines?q=${location, disaster}&apiKey=API_KEY`);
-  fetch(`https://newsapi.org/v2/top-headlines?q=${location, disaster}&apiKey=API_KEY`)
+  disaster = disaster.replace(" ", "+");
+  const fetchAdd = `https://newsapi.org/v2/everything?qInTitle=${location}+${disaster}&sortBy=publishedAt&apiKey=27c7768c7a1044f9aeee364a9a5f6dfd`;
+  fetch(fetchAdd)
   .then(body => body.json())
   .then(body =>{
-    console.log(body);
-    next();
+    res.locals.allNews = body["articles"];
+    return next();
   })
 }
 
