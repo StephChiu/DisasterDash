@@ -80,16 +80,16 @@ const MainContainer = () => {
           </Navbar>
           <Switch>
         <Route path="/earthquake">
-          <ContentContainer news={news}/>
+          <ContentContainer location={location} news={news}/>
         </Route>
         <Route path="/fire">
-          <ContentContainer news={news}/>
+          <ContentContainer location={location} news={news}/>
         </Route>
         <Route path="/hurricane">
-          <ContentContainer news={news}/>
+          <ContentContainer location={location} news={news}/>
         </Route>
         <Route path="/tornado">
-          <ContentContainer news={news}/>
+          <ContentContainer location={location} news={news}/>
         </Route>
         <Route path="/">
           <LandingContainer updateLocation={updateLocation}/>

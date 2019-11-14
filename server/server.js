@@ -18,6 +18,9 @@ app.get('/', (req, res) => {
 app.get('/loc', geolocController.getCurrentLoc,(req,res)=> {
   res.status(200).json(res.locals.locData);
 })
+app.get('/chooseLoc/:name', geolocController.getEnteredLoc, (req, res)=> {
+  res.status(200).json(res.locals.cityLoc)
+})
 
 //'/main' route redirect
 app.get('/main', (req, res) => {
