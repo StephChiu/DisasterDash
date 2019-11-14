@@ -51,9 +51,23 @@ const MainContainer = () => {
     setLogin(true);
   }
 
+  const handleSignup = (event) => {
+    event.preventDefault();
+    fetch('/signup', {
+      method: 'POST',
+      body: new URLSearchParams(new FormData(event.target))
+    })
+    .then(res => res.json())
+    .then(data => {
+      alert(data)
+    })
+    .catch(err => console.log('error in login fetch', err))
+    switchLogin();
+  }
+
   let SignUpDisplay = null;
   if (signupPage === true) {
-    SignUpDisplay = <SignUp className="signup" switchLogin={switchLogin}/>
+    SignUpDisplay = <SignUp className="signup" switchLogin={switchLogin} handleSignup={handleSignup}/>
   }
 
   // conditional rendering for login
