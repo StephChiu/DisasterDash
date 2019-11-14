@@ -1,5 +1,5 @@
-const scraper = require('../utils/scraper');
 const fetch = require('node-fetch');
+const axios = require('axios')
 const newsController = {};
 
 //getNews middleware scrapes titles and links from source sites, as specified in server.js
@@ -20,21 +20,13 @@ newsController.getNews = (req, res, next) => {
 //getAlerts middleware scrapes top alerts from LAFD
   //this returns a single array of objects; not nested as returned by .getNews, as it's only scraping from one source
 newsController.getAlerts = (req, res, next) => {
-  const LAFDAlerts = new Promise((resolve, reject) => {
-    scraper
-      .scrapeLAFDAlerts()
-      .then(data => {
-        resolve(data)
-      })
-      .catch(err => reject('LAFD alerts scrape failed'))
-  })
-  
-  Promise.all([ LAFDAlerts ])
-    .then(data => {
-      res.locals.alerts = data[0];
-      next()
+  const URL = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=fire%7C|losangeles&type=video&key=AIzaSyDQsDdnlVxIF9a8sikNwQo0KH1EChc-F7Q`
+  axios.get(URL)
+    .then(response => {
+      console.log('GET ALERTS CONTROLLER -> ', response.data.items);
+      res.send(response.data.items);
     })
-    .catch(err => res.status(500).send(err))
+    .catch(err => console.log(err))
 }
 
 module.exports = newsController;

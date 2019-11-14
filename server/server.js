@@ -70,7 +70,7 @@ app.get('/news', newsController.getNews, (req, res) => {
 });
 // '/alerts' route will respond with an array of alerts from LAFD: {title: 'Alert', link: 'www.alertLink.com'}
 app.get('/alerts', newsController.getAlerts, (req, res) => {
-  res.json(res.locals.alerts);
+  res.sendStatus(200);
 });
 
 app.use('/build', express.static(path.join(__dirname, '../build')));
