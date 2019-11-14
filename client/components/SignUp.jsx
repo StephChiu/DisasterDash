@@ -6,7 +6,7 @@ const SignUp = (props) => {
     return ( 
       <div className="signupPage">
       Sign Up
-      <form className="signupForm" method="POST" action="/signup" encType="application/x-www-form-urlencoded">
+      <form className="signupForm" onSubmit={(event) => {props.handleSignup(event)}}>
         <label>
           Create Username
           <input name="username" type="text"></input>
