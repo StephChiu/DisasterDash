@@ -35,19 +35,6 @@ const MainContainer = () => {
   const [loginPage, setLogin] = useState(false);
   const [user, setUser] = useState('');
 
-  // upon rendering, the fetch will occur and the hook 'newsUpdate' should update the state
-  useEffect(() => {
-    fetch('/news')
-    .then(resp => {
-        return resp.json()})
-    .then(data => {
-        newsUpdate([...data])
-    })
-    .catch((err) => {
-        console.log(err)
-    })
-  },[])
-
   // conditional rendering for sign up  
   const signupPopUp = () => {
     if (signupPage == false) {
