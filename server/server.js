@@ -40,14 +40,14 @@ app.get('/chooseLoc/:name', geolocController.getEnteredLoc, (req, res)=> {
   res.status(200).json(res.locals.cityLoc)
 })
 
-//'/main' route redirect
-app.get('/main', (req, res) => {
-  res.redirect('/')
+// '/main' route redirect
+app.get('/main', userController.isLoggedIn, (req, res) => {
+  res.status(200).redirect('/')
 });
 
 // sign up route
-app.post('/signup', userController.createUser, userController.setCookie, userController.startSession, (req, res) => {
-  res.status(200).redirect('/main')
+app.post('/signup', userController.createUser, (req, res) => {
+  res.json(res.locals.signup);
 });
 
 // login route
