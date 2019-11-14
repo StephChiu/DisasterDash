@@ -172,7 +172,7 @@ const MainContainer = () => {
                 className="d-inline-block align-top"
                 onClick={()=> Easteregg()}
             />
-            <Link className="navLinks" to="/">Verifire</Link>
+            <Link className="navLinks" to="/">DisasterDash</Link>
             </Navbar.Brand>
             <NavLink className="navLinks" to="/earthquake">Earthquake</NavLink>
             <NavLink className="navLinks" to="/fire">Wild Fire</NavLink>
