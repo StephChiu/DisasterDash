@@ -223,11 +223,23 @@ hr {
 //messages styling
 
 #messages {
-    display:flex;
-    flex-direction: column;
     overflow: auto;
+    min-width: 300px;
     p {
         color: white;
+        margin: 0;
+    }
+    #input-field {
+        width: 100%;
+    }
+    #message {
+        width: 80%;
+        outline: none;
+    }
+    #send {
+        height: 30px;
+        width: 20%;
+        border: none;
     }
 }
 

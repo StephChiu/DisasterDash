@@ -6,8 +6,27 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script defer src="https://cdn.aerisapi.com/sdk/js/latest/aerisweather.min.js"></script>
     <script src="https://cdn.rawgit.com/progers/pathseg/master/pathseg.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
     <title>Verifire</title>
 </head>
+<script>
+  const socket = io.connect('http://localhost:3000');
+
+  // const message = document.getElementById('message');
+  // const btn = document.getElementById('send');
+  // const output = document.getElementById('output-box');
+
+  // btn.addEventListener('click', () => {
+  //   socket.emit('chat', {
+  //     message: message.value
+  //   })
+  // })
+
+  // socket.on('chat', (data) => {
+  //   console.log('MEssage: ', data.message);
+  //   output.innerHTML += data.message
+  // });
+</script>
 <body>
     <div id="root"></div>
     <script type="text/javascript" src="./build/bundle.js"></script>
