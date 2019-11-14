@@ -7,7 +7,7 @@ import Map from '../components/Maps.jsx'
 const MapsContainer = (props) => {
     return (
         <div id="map" >
-          <Map location={props.location}/>
+          <Map location={props.location} layers={props.layers} />
         </div>      
       );
 }
