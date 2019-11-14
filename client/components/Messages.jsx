@@ -8,50 +8,43 @@ import React, { useEffect, useState } from 'react'
 //this could be tied to authentication for identification
 
 const Messages = (props) => {
-
     //This hook was built to receive and show messages
-    const [messages, setMessages]= useState([{message: 'message'}])
+    const [messages, setMessages]= useState([])
     //this hook was built to take in user input and utilize it to show messages sent
-    const [input, setInput]= useState('')
+    // const [input, setInput]= useState('')
 
-    const displayMessage = messages.map((el, i) => {
-        return <p key={i}>{el.message}</p>
+    const displayMessages = messages.map((msg, i) => {
+        return <p key={i}>{msg}</p>;
     })
 
     //use effects mimics lifecycle methods, the second parameter being an empty array mimics componentDidMount
     useEffect(() => {
-        //this is used to fetch the message from the database
-        fetch('/messages')
-        .then(resp => {
-            return resp.json()
-        })
-        .then(data => {
-            setMessages([...data])
-        })
-        .catch(err => {
-            console.log(err)
-        })
-    }, [])
+        socket.on('chat', (data) => {
+            console.log(data.message);
+            setMessages([data.message].concat(messages))
+            console.log('msgs -> ', messages);
+        });
+    })
 
     //hooks are simplified by making methods with hooks built into them
     //Think of the method that is paired in the hook ('setInput') here as another form of this.setState
-    const handleType = e => {
-        setInput(e.target.value)
-    };
+    // const handleType = e => {
+    //     setInput(e.target.value)
+    // };
 
-    const handleClick = () => {
-        // fetch('/messages/create', {
-        //     method: 'POST',
-        //     body: {message: input}})
-        setMessages(messages.concat([{'message': input}]))
-        setInput('');
+    const handleClick = () => {        
+        socket.emit('chat', {
+            message: message.value
+        })
     }
 
     return ( 
         <React.Fragment>
-            {displayMessage}
-            <input type="text" placeholder="Enter message here" value={input} onChange={handleType}/>
-            <input type="button" value="press to send" onClick={handleClick}/>
+            <div id="input-field">
+                <input id="message" type="text" placeholder="Enter message here" autoComplete="off"/>
+                <input id="send" type="button" value="Send" onClick={handleClick} />
+            </div>
+            {displayMessages}
         </React.Fragment>
         
      );
