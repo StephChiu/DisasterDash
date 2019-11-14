@@ -1,4 +1,4 @@
-const Message = require('../models/models')
+const Message = require('../models/messageModel')
 
 //i attempted to start with web sockets but it started crashing the app- lack of time
 // const http = require('http').createServer(app);
