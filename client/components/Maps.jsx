@@ -8,11 +8,9 @@ const Maps = (props) => {
     let latitude
     let longitude
     useEffect(()=>{
-        console.log(props);
         fetch(`/chooseLoc/${props.location}`)
         .then(data => data.json())
         .then(data => {
-            console.log(data)
             latitude = data.lat;
             longitude = data.lng;
         })
