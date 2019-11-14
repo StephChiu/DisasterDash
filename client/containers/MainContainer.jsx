@@ -186,10 +186,10 @@ const MainContainer = () => {
         </Navbar>
         <Switch>
           <Route path="/earthquake">
-            <ContentContainer location={location} news={newsEarthquake}/>
+            <ContentContainer location={location} news={newsEarthquake} />
           </Route>
           <Route path="/fire">
-            <ContentContainer location={location} news={newsFire}/>
+            <ContentContainer location={location} news={newsFire} layers={'fires-outlook,fires-dryltg-outlook,fires-obs-icons,fires-obs-points'}/>
           </Route>
           <Route path="/hurricane">
             <ContentContainer location={location} news={newsHurricane}/>

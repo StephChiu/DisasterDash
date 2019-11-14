@@ -23,8 +23,8 @@ const Maps = (props) => {
                         lat: latitude,
                         lon: longitude
                     },
-                    zoom: 11,
-                    layers: 'fires-outlook,fires-dryltg-outlook,fires-obs-icons,lightning-strike-density,fires-obs-points,alerts,stormcells,tropical-cyclones'
+                    zoom: 8,
+                    layers: props.layers
                 });
             });
         })
