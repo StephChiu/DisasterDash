@@ -8,15 +8,15 @@ const Social = (props) => {
     const [social, socialUpdate] = useState([[{title:'Loading...', link:'google.com'}],[{title:'Loading...', link:'google.com'}],[{title:'Loading...', link:'google.com'}]]);
     
     // Fetch alerts from the backend
-    useEffect(() => {
-        fetch('/alerts')
-        .then(res => {
-            return res.json();
-        })
-        .then(res => {
-            socialUpdate([...res])
-        })
-    }, []);
+    // useEffect(() => {
+    //     fetch('/alerts')
+    //     .then(res => {
+    //         return res.json();
+    //     })
+    //     .then(res => {
+    //         socialUpdate([...res])
+    //     })
+    // }, []);
     
 
     // Map incoming alerts to anchor tags

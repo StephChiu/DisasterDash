@@ -132,6 +132,8 @@ const MainContainer = () => {
       setTornado(body);
       setLoc(newLoc);
     })
+
+    
   };
 
   //easter egg for sandstorm- just need to click the fire icon

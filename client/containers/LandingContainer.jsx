@@ -15,7 +15,7 @@ const LandingContainer = (props) => {
     .then(resp => resp.json())
     .then(data => {
       props.updateLocation(data.city);
-        setTempLoc(data.city);
+      setTempLoc(data.city);
     })
     .catch((err) => {
         console.log(err)
@@ -23,7 +23,6 @@ const LandingContainer = (props) => {
   },[])
   
   const tempLoc = (e) =>{
-    console.log(e.target.value);
     setTempLoc(e.target.value);
   }
 
