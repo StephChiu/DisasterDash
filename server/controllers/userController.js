@@ -16,10 +16,12 @@ userController.createUser = (req, res, next) => {
   const { username, password, email, city, state } = req.body;
   User.create({ username, password, email, city, state }, (err, doc) => {
     if (err) {
+      res.locals.signup = 'Error: Please complete all required fields.'
       console.log('error in userController.createUser')
     } else {
+      res.locals.signup = 'Account created! Please login.'
+      // res.locals.id = doc._id;
       console.log('successfully created User in DB')
-      res.locals.id = doc._id;
       return next();
     }
   });
@@ -57,9 +59,15 @@ userController.setCookie = (req, res, next) => {
 
 userController.isLoggedIn = (req, res, next) => {
   Session.find({cookieId: req.cookies.ssid}, (err, session) => {
-    if (err) return next('Error in userController.isLoggedIn' + JSON.stringify(err));
-    else if (!session.length) res.redirect('/signup') 
-    else return next(); 
+    if (err) {
+      return next('Error in userController.isLoggedIn' + JSON.stringify(err))
+    } else if (!session.length) {
+      res.locals.status = notLoggedin;
+      res.redirect('/main')
+    } else {
+      res.locals.status = loggedin;
+      return next(); 
+    }
   })
 };
 

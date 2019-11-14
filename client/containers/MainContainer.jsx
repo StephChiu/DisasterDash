@@ -51,9 +51,23 @@ const MainContainer = () => {
     setLogin(true);
   }
 
+  const handleSignup = (event) => {
+    event.preventDefault();
+    fetch('/signup', {
+      method: 'POST',
+      body: new URLSearchParams(new FormData(event.target))
+    })
+    .then(res => res.json())
+    .then(data => {
+      alert(data)
+    })
+    .catch(err => console.log('error in login fetch', err))
+    switchLogin();
+  }
+
   let SignUpDisplay = null;
   if (signupPage === true) {
-    SignUpDisplay = <SignUp className="signup" switchLogin={switchLogin}/>
+    SignUpDisplay = <SignUp className="signup" switchLogin={switchLogin} handleSignup={handleSignup}/>
   }
 
   // conditional rendering for login
@@ -117,6 +131,8 @@ const MainContainer = () => {
       setTornado(body);
       setLoc(newLoc);
     })
+
+    
   };
 
   //easter egg for sandstorm- just need to click the fire icon
@@ -147,43 +163,43 @@ const MainContainer = () => {
     <article id ="mainContainer">
       {SignUpDisplay}
       {LoginDisplay}
-        <Router>
-          <Navbar bg="dark" variant="dark">
-            <Navbar.Brand>
-            <img
-                alt=""
-                src="http://www.clker.com/cliparts/P/r/s/n/g/W/maron-flame-logo-4.svg"
-                width="30"
-                height="30"
-                className="d-inline-block align-top"
-                onClick={()=> Easteregg()}
-            />
-            <Link className="navLinks" to="/">Verifire</Link>
-            </Navbar.Brand>
-            <NavLink className="navLinks" to="/earthquake">Earthquake</NavLink>
-            <NavLink className="navLinks" to="/fire">Wild Fire</NavLink>
-            <NavLink className="navLinks" to="/hurricane">Hurricane</NavLink>
-            <NavLink className="navLinks" to="/tornado">Tornado</NavLink>
-            <Button className="navButtons" variant="outline-light" onClick={loginPopUp}>Login</Button>
-            <Button className="navButtons" variant="outline-light"  onClick={signupPopUp}>Sign Up</Button>
-            <Navbar.Text fixed="right">{user}</Navbar.Text>
-          </Navbar>
-          <Switch>
-        <Route path="/earthquake">
-          <ContentContainer location={location} news={newsEarthquake}/>
-        </Route>
-        <Route path="/fire">
-          <ContentContainer location={location} news={newsFire}/>
-        </Route>
-        <Route path="/hurricane">
-          <ContentContainer location={location} news={newsHurricane}/>
-        </Route>
-        <Route path="/tornado">
-          <ContentContainer location={location} news={newsTornado}/>
-        </Route>
-        <Route path="/">
-          <LandingContainer updateLocation={updateLocation}/>
-        </Route>
+      <Router>
+        <Navbar bg="dark" variant="dark">
+          <Navbar.Brand>
+          <img
+              alt=""
+              src="http://www.clker.com/cliparts/P/r/s/n/g/W/maron-flame-logo-4.svg"
+              width="30"
+              height="30"
+              className="d-inline-block align-top"
+              onClick={()=> Easteregg()}
+          />
+          <Link className="navLinks" to="/">DisasterDash</Link>
+          </Navbar.Brand>
+          <NavLink className="navLinks" to="/earthquake">Earthquake</NavLink>
+          <NavLink className="navLinks" to="/fire">Wild Fire</NavLink>
+          <NavLink className="navLinks" to="/hurricane">Hurricane</NavLink>
+          <NavLink className="navLinks" to="/tornado">Tornado</NavLink>
+          <Button className="navButtons" variant="outline-light" onClick={loginPopUp}>Login</Button>
+          <Button className="navButtons" variant="outline-light"  onClick={signupPopUp}>Sign Up</Button>
+          <Navbar.Text fixed="right">{user}</Navbar.Text>
+        </Navbar>
+        <Switch>
+          <Route path="/earthquake">
+            <ContentContainer location={location} news={newsEarthquake}/>
+          </Route>
+          <Route path="/fire">
+            <ContentContainer location={location} news={newsFire}/>
+          </Route>
+          <Route path="/hurricane">
+            <ContentContainer location={location} news={newsHurricane}/>
+          </Route>
+          <Route path="/tornado">
+            <ContentContainer location={location} news={newsTornado}/>
+          </Route>
+          <Route path="/">
+            <LandingContainer updateLocation={updateLocation}/>
+          </Route>
         </Switch>
       </Router>
     </article>

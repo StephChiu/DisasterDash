@@ -6,10 +6,9 @@ import Map from '../components/Maps.jsx'
 
 const MapsContainer = (props) => {
     return (
-        <div id="map">
-          <Map/>
-        </div>
-        
+        <div id="map" >
+          <Map location={props.location}/>
+        </div>      
       );
 }
  

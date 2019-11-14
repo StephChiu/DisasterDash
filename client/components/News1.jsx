@@ -15,8 +15,8 @@ const News1 = ({news}) => {
             <React.Fragment>
                 <article key= {i} className="pair">
                     <a className="newsEntry" key={i} href={el.url}>
-                        <p>{el.title}</p> 
-                        <p>{el.publishedAt}</p>
+                        <p key = {i}>{el.title}</p> 
+                        <p >{el.publishedAt}</p>
                     </a>
                 </article>
                 <hr/>
