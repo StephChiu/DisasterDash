@@ -4,20 +4,20 @@ import React from 'react';
 //This componenet was build for the purpose of displaying a map that displays local disasters
 //We started with displaying fires
 
-const Maps = (props) => {
-    console.log(props)
+const Maps = (props, location) => {
+    console.log(location)
     let latitude
     let longitude
     fetch('/chooseLoc/:name')
     .then(data => data.json())
     .then(data => {
-        console.log(data.lat, data.lng)
+        console.log(data)
         latitude = data.lat;
         longitude = data.lng;
     })
     .then(() => {
         console.log(latitude);
-        const aeris = new AerisWeather('01eC4PsnCj8tOk6CLMynd', '5TCmINp2KuOzPddNUj7Jw3Tf6Px9PoUPIIzDaexN');
+        const aeris = new AerisWeather('BX5DJsHFWzOBmPsfAVf15', 'p7wb1Z4XFlC5g7NrLsQOmqNIBlr7JDUUypuW3Opb');
         aeris.views().then(views => {
             const map = new views.InteractiveMap(document.getElementById('map'), {
                 center: {
