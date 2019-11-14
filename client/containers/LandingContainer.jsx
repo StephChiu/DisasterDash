@@ -14,6 +14,7 @@ const LandingContainer = (props) => {
     fetch('/loc')
     .then(resp => resp.json())
     .then(data => {
+      props.updateLocation(data.city);
         setTempLoc(data.city);
     })
     .catch((err) => {
