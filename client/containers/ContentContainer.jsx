@@ -8,7 +8,6 @@ import SocialContainer from './SocialContainer.jsx';
 //This is also useful for styling all the pieces together
 
 const ContentContainer = ({location, news}) => {
-    console.log(location)
     return ( 
         <div id="content">
             <NewsContainer news={news}/>
