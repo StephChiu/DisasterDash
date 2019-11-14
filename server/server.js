@@ -81,14 +81,15 @@ app.use((err, req, res, next) => {
 
 // Web Sockets Implementation
 io.on('connection', function(socket) {
-  console.log('a user connected', socket);
+  console.log('a user connected');
   socket.on('disconnect', function() {
     console.log('user disconnected');
   })
-  // socket.emit('news', { hello: 'world' });
-  // socket.on('my other event', function (data) {
-  //   console.log(data);
-  // });
+
+  socket.on('chat', (data) => {
+    console.log('MSG DATA -> ', data);
+    io.sockets.emit('chat', data);
+  });
 });
 
 http.listen(PORT, () => {

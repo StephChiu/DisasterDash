@@ -7,7 +7,7 @@ geolocController.getCurrentLoc = (req, res, next) => {
   .then(data => data.json())
   .then(data => {
     res.locals.locData = data;
-    console.log(data);
+    // console.log(data);
     return next();
   })
   .catch(err => next(err));
