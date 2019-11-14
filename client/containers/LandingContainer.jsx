@@ -23,7 +23,6 @@ const LandingContainer = (props) => {
   },[])
   
   const tempLoc = (e) =>{
-    console.log(e.target.value);
     setTempLoc(e.target.value);
   }
 
