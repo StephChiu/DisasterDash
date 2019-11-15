@@ -15,6 +15,7 @@ const Login = (props) => {
         </label>
         <input type="submit" value="Login"></input>
       </form>
+      <a href="https://github.com/login/oauth/authorize?client_id=f508e33433cf1d98fd40&redirect_uri=http://localhost:8080/oathgithub" class="button">Sign in with GitHub</a>
       </div>
      );
 }
