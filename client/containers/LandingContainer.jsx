@@ -9,7 +9,7 @@ import Particles from 'react-particles-js'
 
 const LandingContainer = (props) => {
   const [location, setTempLoc] = useState("");
-
+  console.log(props.history);
   useEffect(() => {
     fetch('/loc')
     .then(resp => resp.json())
@@ -31,8 +31,8 @@ const LandingContainer = (props) => {
       <div id="landingInfo">
         <h2>DisasterDash</h2>
         <h3>Keep Up With The Disaster</h3>
-        <p>Outpace your fate</p>
-        <input onChange= {tempLoc} type="text" value={location}></input><button onClick={() => props.updateLocation(location)}>Search</button>
+        <p>Outpace Your Fate</p>
+        <input onChange= {tempLoc} type="text" value={location}></input><button onClick={() => {props.updateLocation(location); alert("location configured!");}}>Set</button>
       </div>
       <div id="particles">
       <Particles

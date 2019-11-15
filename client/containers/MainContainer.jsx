@@ -115,7 +115,7 @@ const MainContainer = () => {
     .then(body => {
       setEarthquake(body);
       setLoc(newLoc);
-      history.push('/earthquake');
+      //history.push('/earthquake');
     })
     const fireEndPoint = `/news?loc=${newLoc}&dis=fire`;
     fetch(fireEndPoint)
@@ -208,7 +208,7 @@ const MainContainer = () => {
             <DonateContainer/>
           </Route>
           <Route path="/">
-            <LandingContainer updateLocation={updateLocation}/>
+            <LandingContainer history={history} updateLocation={updateLocation}/>
           </Route>
         </Switch>
       </Router>
