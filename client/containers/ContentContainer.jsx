@@ -7,13 +7,13 @@ import SocialContainer from './SocialContainer.jsx';
 //This container was made to be a routing point from the main landing page
 //This is also useful for styling all the pieces together
 
-const ContentContainer = ({location, news}) => {
-    console.log(location)
+const ContentContainer = ({location, news, layers, path}) => {
+    // console.log(path)
     return ( 
         <div id="content">
             <NewsContainer news={news}/>
             <SocialContainer/>
-            <MapsContainer location={location}/>
+            <MapsContainer location={location} layers={layers} path={path}/>
             <MessagesContainer/>
         </div>
      );
