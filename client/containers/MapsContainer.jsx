@@ -5,9 +5,10 @@ import Map from '../components/Maps.jsx'
 //despite there not being an actual reason to do so
 
 const MapsContainer = (props) => {
+  // console.log(props.path)
     return (
         <div id="map" >
-          <Map location={props.location} layers={props.layers} />
+          <Map location={props.location} layers={props.layers} path={props.path}/>
         </div>      
       );
 }
