@@ -23,7 +23,7 @@ const Social = (props) => {
             })
             .catch(err => console.log('Error in UseEffect get : ', err)) 
             console.log('after get req');
-        }, []);
+    }, [props.disaster]);
 
     console.log('outside useEffect');
     console.log('SOCIAL ---> ', social);
