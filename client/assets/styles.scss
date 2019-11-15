@@ -192,7 +192,7 @@ animation: AnimationName 16s ease infinite;
 }
 
 #content {
-    background: linear-gradient(88deg, #ff0000, #feff00);
+background: linear-gradient(88deg, #ff0000, #feff00);
 background-size: 400% 400%;
 
 -webkit-animation: AnimationName 16s ease infinite;
@@ -311,12 +311,27 @@ animation: AnimationName 16s ease infinite;
     background: coral; 
 }
 
-// Donate container
-#donate {
-  // display: grid;
-  // grid-template-columns: 40px repeat(8, 2fr) 40px;
-  // grid-template-rows: 40px repeat(8, 2fr) 40px;
-  // height: 100vh;
-  // width: 100vw;
-  padding-top: 100px;
+// Donate tab
+.donateCard {
+  margin-top: 25px;
 }
+
+#container-donate {
+  padding-top: 50px;
+}
+
+#donateHeader {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  color: white;
+  opacity: 0.2
+  background-image: url("https://image.shutterstock.com/image-photo/panoramic-image-morning-forest-fantastic-260nw-117241822.jpg");
+  background-size: 100%;
+    #donateText {
+      margin: 25px;
+    }
+}
+
+// #donateHeader {
+
+// }
