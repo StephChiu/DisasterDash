@@ -39,6 +39,7 @@ const LandingContainer = (props) => {
           params={{
             // Maximum Frames Per Second
             "fps_limit": 60,
+            "width": 500,
             "particles": {
               "number": {
                 // Number of Particles
@@ -56,13 +57,13 @@ const LandingContainer = (props) => {
               },
               // Movement Speed of the Particles
               "move": {
-                "speed": 10
+                "speed": 1
               },
               "opacity": {
                 "anim": {
                   "enable": true,
                   "opacity_min": 0.05,
-                  "speed": 2,
+                  "speed": 1,
                   "sync": false
                 },
                 "value": 0.4
@@ -71,7 +72,7 @@ const LandingContainer = (props) => {
             "polygon": {
               "enable": true,
               // Size of your mask
-              "scale": 0.55,
+              "scale": .5,
               // Type can be:
               // inline(particles on the lines of your mask),
               // inside(particles inside the lines of your mask[ Will only work on non-curved lines ]),
@@ -79,7 +80,7 @@ const LandingContainer = (props) => {
               "type": "inline",
               "move": {
                 // How far away from your lines the particles are allowed to venture out
-                "radius": 5
+                "radius": .5
               },
               // Url for mask, here we are routing to the backend
               "url":"/flare",
@@ -103,8 +104,8 @@ const LandingContainer = (props) => {
               },
               "modes": {
                 "bubble": {
-                  "size": 6,
-                  "distance": 40
+                  "size": 1,
+                  "distance": 1
                 }
               }
             }
