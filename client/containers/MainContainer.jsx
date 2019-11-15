@@ -181,6 +181,7 @@ const MainContainer = () => {
           <NavLink className="navLinks" to="/fire">Wild Fire</NavLink>
           <NavLink className="navLinks" to="/hurricane">Hurricane</NavLink>
           <NavLink className="navLinks" to="/tornado">Tornado</NavLink>
+          <NavLink className="navLinks" to="/donate">Donate</NavLink>
           <Button className="navButtons" variant="outline-light" onClick={loginPopUp}>Login</Button>
           <Button className="navButtons" variant="outline-light"  onClick={signupPopUp}>Sign Up</Button>
           <Navbar.Text fixed="right">{user}</Navbar.Text>
@@ -197,6 +198,9 @@ const MainContainer = () => {
           </Route>
           <Route path="/tornado">
             <ContentContainer location={location} news={newsTornado} layers={'stormcells'}/>
+          </Route>
+          <Route path="/donate">
+            <DonateContainer/>
           </Route>
           <Route path="/">
             <LandingContainer updateLocation={updateLocation}/>
