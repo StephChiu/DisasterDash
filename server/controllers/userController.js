@@ -1,6 +1,7 @@
 const User = require('../models/userModel');
 const bcrypt = require('bcryptjs');
 const Session = require('../models/sessionModel');
+const fetch = require('node-fetch');
 
 const userController = {};
 
@@ -49,6 +50,22 @@ userController.verifyUser = (req, res, next) => {
       });
     }
   });
+};
+
+userController.github = (req, res, next) => {
+  let code = req.query.code;
+  fetch(
+    `https://github.com/login/oauth/access_token?client_id=f508e33433cf1d98fd40&client_secret=71e309a509794d609978b95235eb37b931f757bd&code=${code}`,
+    { method: "POST", headers: { Accept: "application/json" } }
+  )
+    .then(resp => resp.json())
+    .then(data => {
+      res.locals.id = data.access_token;
+      return next();
+    })
+    .catch(err => {
+      return next(err);
+    });
 };
 
 

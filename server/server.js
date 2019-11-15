@@ -55,6 +55,20 @@ app.post('/login', userController.verifyUser, userController.setCookie, userCont
   res.status(200).json(res.locals.username)
 });
 
+//github oauth
+app.get("/oathgithub", (req,res,next)=>{
+  console.log('imhere');
+  next();
+},
+  userController.github,
+  userController.setCookie,
+  userController.startSession,
+  (req, res) => {
+    // what should happen here on successful log in?
+    res.redirect("/");
+  }
+);
+
 // Serve Particle SVG
 app.get('/flare', (req, res) => {
     res.status(200).sendFile(path.join(__dirname, '../client/assets/flame.svg'));
