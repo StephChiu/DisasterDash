@@ -4,6 +4,9 @@ import LandingContainer from './LandingContainer.jsx';
 import DonateContainer from './DonateContainer.jsx';
 import SignUp from '../components/SignUp.jsx';
 import Login from '../components/Login.jsx';
+import { createBrowserHistory } from 'history';
+
+
 
 //we utilized react-bootstrap to style our page with pre-made components
 import Navbar from 'react-bootstrap/Navbar'
@@ -11,11 +14,12 @@ import Button from 'react-bootstrap/Button'
 
 //we imported the next set to utilize react-router as we wanted to route in a landing page
 import {
-    BrowserRouter as Router,
+    Router,
     Switch,
     Route,
     NavLink,
     Link,
+    useHistory
   } from "react-router-dom";
 
 //We created a main container preferentially as to carry our other containers
@@ -24,8 +28,9 @@ import {
 //react router has two parts, one part is integrated into your main code to direct your user
 //the second portion sends the user to where they go based on where your routes are established
 
-
+const history = createBrowserHistory();
 const MainContainer = () => {
+  console.log("this is maincontainer history", history);
   //instantiating hook in this component so that the fetch occurs earlier
   const [newsEarthquake, setEarthquake] = useState([]);
   const [newsFire, setFire] = useState([]);
@@ -110,6 +115,7 @@ const MainContainer = () => {
     .then(body => {
       setEarthquake(body);
       setLoc(newLoc);
+      history.push('/earthquake');
     })
     const fireEndPoint = `/news?loc=${newLoc}&dis=fire`;
     fetch(fireEndPoint)
@@ -132,7 +138,6 @@ const MainContainer = () => {
       setTornado(body);
       setLoc(newLoc);
     })
-
     
   };
 
@@ -164,7 +169,7 @@ const MainContainer = () => {
     <article id ="mainContainer">
       {SignUpDisplay}
       {LoginDisplay}
-      <Router>
+      <Router history={history}>
         <Navbar bg="dark" variant="dark">
           <Navbar.Brand>
           <img
