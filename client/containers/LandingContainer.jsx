@@ -29,9 +29,9 @@ const LandingContainer = (props) => {
   return ( 
     <div id="landing">
       <div id="landingInfo">
-        <h2>DisasterDash:</h2>
-        <span>Keep Up With The Disaster</span>
-        <p>Stay updated, know your coverage, and keep connected</p>
+        <h2>DisasterDash</h2>
+        <h3>Keep Up With The Disaster</h3>
+        <p>Outpace your fate</p>
         <input onChange= {tempLoc} type="text" value={location}></input><button onClick={() => props.updateLocation(location)}>Search</button>
       </div>
       <div id="particles">
