@@ -316,22 +316,29 @@ animation: AnimationName 16s ease infinite;
   margin-top: 25px;
 }
 
-#container-donate {
-  padding-top: 50px;
-}
-
-#donateHeader {
-  padding-top: 50px;
-  padding-bottom: 50px;
-  color: white;
-  opacity: 0.2
-  background-image: url("https://image.shutterstock.com/image-photo/panoramic-image-morning-forest-fantastic-260nw-117241822.jpg");
-  background-size: 100%;
-    #donateText {
-      margin: 25px;
-    }
-}
+// #container-donate {
+//   padding-top: 50px;
+// }
 
 // #donateHeader {
-
+//   padding-top: 50px;
+//   padding-bottom: 50px;
+//   color: white;
+//   opacity: 0.2
+//   background-image: url("https://image.shutterstock.com/image-photo/panoramic-image-morning-forest-fantastic-260nw-117241822.jpg");
+//   background-size: 100%;
+//     #donateText {
+//       margin: 25px;
+//     }
 // }
+
+#donateHeader {
+  padding-top: 100px;
+  padding-bottom: 700px;
+  color: rgb(59, 59, 59);
+  background-image: url("https://cdn.pixabay.com/photo/2018/10/04/07/04/trees-3723070_1280.jpg");
+  background-size: 100%;
+  #donateText {
+    margin: 25px;
+  }
+}
