@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import DonateCard from '../components/DonateCard.jsx';
+import axios from 'axios';
+
 
 const DonateContainer = (props) => {
-   
-  // to remove from github 
-  let apiKey = '3aeb5336-1225-45f1-813f-acc92b4efce7'
 
   const[input, setInput] = useState('');
   const [searchResults, setSearchResults] = useState([]);
@@ -15,12 +14,13 @@ const DonateContainer = (props) => {
   
   const handleSubmit = () => {
     const results = [];
-    fetch(`https://api.globalgiving.org/api/public/services/search/projects.json?api_key=${apiKey}&q=${input}`, {
-      headers: {'Content-Type': 'application/json'}
+    axios.get('/donate', {
+      params: {
+        input: input
+      }
     })
-    .then(res => res.json())
     .then(data => {
-      let output = data.search.response.projects.project;
+      let output = data.data.search.response.projects.project;
       for (let i = 0; i < output.length; i += 1) {
         let url;
         if (output[i].image.imagelink[3].url) {

@@ -3,6 +3,7 @@ const app = express();
 const path = require('path');
 const mongoose = require('mongoose');
 const PORT = 3000;
+require('dotenv').config();
 
 // Web Sockets
 const http = require('http').createServer(app);
@@ -11,10 +12,11 @@ const io = require('socket.io')(http);
 const newsController = require('./controllers/newsController');
 const messageController = require('./controllers/messageController');
 const userController = require('./controllers/userController');
-const geolocController = require('./controllers/geolocController')
+const geolocController = require('./controllers/geolocController');
+const donateController = require('./controllers/donateController');
 
-const MONGO_URI = 'mongodb+srv://StephChiu:Codesmith123@cluster0-ebyb8.mongodb.net/test?retryWrites=true&w=majority'
-mongoose.connect(MONGO_URI, {
+const mongo_uri = `${process.env.MONGO_URI}`;
+mongoose.connect(mongo_uri, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true,
@@ -68,6 +70,11 @@ app.get("/oathgithub", (req,res,next)=>{
     res.redirect("/");
   }
 );
+
+// donate route
+app.get('/donate', donateController.getInfo, (req, res) => {
+  res.status(200).send(res.locals.results)
+})
 
 // Serve Particle SVG
 app.get('/flare', (req, res) => {
