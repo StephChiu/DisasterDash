@@ -5,6 +5,7 @@ import React, {useEffect}from 'react';
 //We started with displaying fires
 
 const Maps = (props) => {
+
     let latitude
     let longitude
     useEffect(()=>{
