@@ -6,28 +6,34 @@ const axios = require('axios');
 
 const Social = (props) => {
     // Create hook for the alerts state with initial values
-    const [social, socialUpdate] = useState([[{title:'Loading...', link:'google.com'}],[{title:'Loading...', link:'google.com'}],[{title:'Loading...', link:'google.com'}]]);
-    
+    const [social, socialUpdate] = useState([]);
+
     // Fetch alerts from the backend
     useEffect(() => {
-        axios.get('/alerts')
+        console.log('inside useEffect');
+        axios.get('/alerts', {
+            params: {
+                location: props.location
+            }
+        })
             .then(res => {
                 console.log('RES -> ', res.data);
+                socialUpdate(res.data);
             })
-            .catch(err => console.log(err))
+            .catch(err => console.log('Error in UseEffect get : ', err)) 
+            console.log('after get req');
+        }, []);
 
-    });
-    
+    console.log('outside useEffect');
+    console.log('SOCIAL ---> ', social);
 
     // Map incoming alerts to anchor tags
-    const alerts = social.map((el, i) => {
-        return <a key={i} className="alertEntry" href={el.link}>{el.title}</a>
-        
-        // <iframe width="560" height="315" 
-        //     src={`https://www.youtube.com/embed/${}`} 
-        //     frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-        //     allowfullscreen>
-        // </iframe>
+    const alerts = social.map((el, i) => { 
+        return <iframe key={i} className="alertEntry"
+            src={`https://www.youtube.com/embed/${el.id.videoId}`} 
+            frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+            allowFullScreen>
+        </iframe>
     })
 
     // Spread anchor tags to fill module

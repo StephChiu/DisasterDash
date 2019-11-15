@@ -12,7 +12,7 @@ const ContentContainer = ({location, news}) => {
     return ( 
         <div id="content">
             <NewsContainer news={news}/>
-            <SocialContainer/>
+            <SocialContainer location={location}/>
             <MapsContainer location={location}/>
             <MessagesContainer/>
         </div>

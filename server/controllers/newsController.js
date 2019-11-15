@@ -20,13 +20,14 @@ newsController.getNews = (req, res, next) => {
 //getAlerts middleware scrapes top alerts from LAFD
   //this returns a single array of objects; not nested as returned by .getNews, as it's only scraping from one source
 newsController.getAlerts = (req, res, next) => {
-  const URL = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=fire%7C|losangeles&type=video&key=AIzaSyDQsDdnlVxIF9a8sikNwQo0KH1EChc-F7Q`
+  const inputLocation = req.query.location || 'LosAngeles';
+  const URL = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=fire%7C|${inputLocation}&type=video&key=AIzaSyAcJRkNJfCvMRIqnH4gOv6A4oLDk2MIbSQ`
   axios.get(URL)
     .then(response => {
       console.log('GET ALERTS CONTROLLER -> ', response.data.items);
       res.send(response.data.items);
     })
-    .catch(err => console.log(err))
+    .catch(err => console.log('Error in getAlerts Controller : ', err))
 }
 
 module.exports = newsController;
