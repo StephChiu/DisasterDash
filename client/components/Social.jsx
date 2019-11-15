@@ -13,7 +13,8 @@ const Social = (props) => {
         console.log('inside useEffect');
         axios.get('/alerts', {
             params: {
-                location: props.location
+                location: props.location,
+                disaster: props.disaster
             }
         })
             .then(res => {

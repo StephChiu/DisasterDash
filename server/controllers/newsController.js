@@ -21,7 +21,8 @@ newsController.getNews = (req, res, next) => {
   //this returns a single array of objects; not nested as returned by .getNews, as it's only scraping from one source
 newsController.getAlerts = (req, res, next) => {
   const inputLocation = req.query.location || 'LosAngeles';
-  const URL = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=fire%7C|${inputLocation}&type=video&key=AIzaSyAcJRkNJfCvMRIqnH4gOv6A4oLDk2MIbSQ`
+  const disaster = req.query.disaster;
+  const URL = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${disaster}%7C|${inputLocation}&type=video&key=AIzaSyAcJRkNJfCvMRIqnH4gOv6A4oLDk2MIbSQ`
   axios.get(URL)
     .then(response => {
       console.log('GET ALERTS CONTROLLER -> ', response.data.items);
