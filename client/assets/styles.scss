@@ -121,13 +121,33 @@ hr {
   margin: 10px;
 }
 
+// Login and Sign up Pages
+
 .greeting {
   color: white;
 }
 
-.signupForm {
-  padding: 10px;
-  margin: 10px;
+.signupPage, .loginPage {
+  background-color: #343a40;
+  color: white;
+  border-radius: 3px;
+}
+
+.signupForm, .loginForm {
+  padding-top: 10px;
+  label {
+    margin: 5px;
+  }
+  input, a {
+    margin: 5px;
+    border-radius: 3px;
+  }
+}
+
+
+.loginForm a {
+  color: white;
+  padding: 5px;
 }
 
 //landing page styles
@@ -316,22 +336,6 @@ animation: AnimationName 16s ease infinite;
   margin-top: 25px;
 }
 
-// #container-donate {
-//   padding-top: 50px;
-// }
-
-// #donateHeader {
-//   padding-top: 50px;
-//   padding-bottom: 50px;
-//   color: white;
-//   opacity: 0.2
-//   background-image: url("https://image.shutterstock.com/image-photo/panoramic-image-morning-forest-fantastic-260nw-117241822.jpg");
-//   background-size: 100%;
-//     #donateText {
-//       margin: 25px;
-//     }
-// }
-
 #donateHeader {
   padding-top: 100px;
   padding-bottom: 700px;
@@ -342,3 +346,4 @@ animation: AnimationName 16s ease infinite;
     margin: 25px;
   }
 }
+
