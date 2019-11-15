@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ContentContainer from './ContentContainer.jsx';
 import LandingContainer from './LandingContainer.jsx';
+import DonateContainer from './DonateContainer.jsx';
 import SignUp from '../components/SignUp.jsx';
 import Login from '../components/Login.jsx';
 
@@ -180,22 +181,26 @@ const MainContainer = () => {
           <NavLink className="navLinks" to="/fire">Wild Fire</NavLink>
           <NavLink className="navLinks" to="/hurricane">Hurricane</NavLink>
           <NavLink className="navLinks" to="/tornado">Tornado</NavLink>
+          <NavLink className="navLinks" to="/donate">Donate</NavLink>
           <Button className="navButtons" variant="outline-light" onClick={loginPopUp}>Login</Button>
           <Button className="navButtons" variant="outline-light"  onClick={signupPopUp}>Sign Up</Button>
           <Navbar.Text fixed="right">{user}</Navbar.Text>
         </Navbar>
         <Switch>
           <Route path="/earthquake">
-            <ContentContainer location={location} news={newsEarthquake} path={'earthquake'}/>
+            <ContentContainer location={location} news={newsEarthquake} path={'earthquake'} disaster="earthquake"/>
           </Route>
           <Route path="/fire">
-            <ContentContainer location={location} news={newsFire} layers={'fires-outlook,fires-dryltg-outlook,fires-obs-icons,fires-obs-points'}/>
+            <ContentContainer location={location} news={newsFire} layers={'fires-outlook,fires-dryltg-outlook,fires-obs-icons,fires-obs-points'} disaster="fire"/>
           </Route>
           <Route path="/hurricane">
-            <ContentContainer location={location} news={newsHurricane} layers={'stormcells,tropical-cyclones'}/>
+            <ContentContainer location={location} news={newsHurricane} layers={'stormcells,tropical-cyclones'} disaster="hurricane"/>
           </Route>
           <Route path="/tornado">
-            <ContentContainer location={location} news={newsTornado} layers={'stormcells'}/>
+            <ContentContainer location={location} news={newsTornado} layers={'stormcells'} disaster="tornado"/>
+          </Route>
+          <Route path="/donate">
+            <DonateContainer/>
           </Route>
           <Route path="/">
             <LandingContainer updateLocation={updateLocation}/>

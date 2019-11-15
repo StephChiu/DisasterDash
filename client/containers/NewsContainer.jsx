@@ -18,12 +18,12 @@ const NewsContainer = ({news}) => {
     if (tabs === 1) {
         newsTab = <News1 news={news}/>
     }
-    if (tabs === 2) {
-        newsTab = <News2 news={news}/>
-    }
-    if (tabs === 3) {
-        newsTab = <News3 news={news}/>
-    }
+    // if (tabs === 2) {
+    //     newsTab = <News2 news={news}/>
+    // }
+    // if (tabs === 3) {
+    //     newsTab = <News3 news={news}/>
+    // }
     
     //splitting up the different components to be flipped through
     //made tabs and images that are both clickable to alter state that renders different components
@@ -31,17 +31,16 @@ const NewsContainer = ({news}) => {
         <div id="news">
             <div id="tabs">
                 <div className="tabs">
-                    <img className="logos" src="https://upload.wikimedia.org/wikipedia/commons/e/e2/Seal_of_the_Los_Angeles_Fire_Department.png" onClick={()=>tabsChange(1)}/>
-                    <div className="tab-text" value="LAFD" onClick={()=>tabsChange(1)}>LAFD</div>
+                    <div className="tab-text" onClick={()=>tabsChange(1)}>Latest News</div>
                 </div>
-                <div className="tabs">
+                {/* <div className="tabs">
                     <img className="logos" src="https://png.pngtree.com/element_our/sm/20180626/sm_5b321c9877382.png" onClick={()=>tabsChange(2)}/>
                     <div className="tab-text" value="Youtube" onClick={()=>tabsChange(2)}>Youtube</div>
                 </div>
                 <div className="tabs">
                     <img className="logos" src={'https://pbs.twimg.com/profile_images/1171581672074043393/XNqsW9EE_400x400.jpg'} onClick={()=>tabsChange(3)}/>
                     <div className="tab-text" value="LA Times" onClick={()=>tabsChange(3)}>LA Times</div>
-                </div>
+                </div> */}
             </div>
             {newsTab}
         </div>

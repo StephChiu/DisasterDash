@@ -7,7 +7,7 @@ import Social from '../components/Social.jsx';
 const SocialContainer = (props) => {
     return ( 
         <div id="social" className="alerts">
-            <Social/>
+            <Social location={props.location} disaster={props.disaster}/>
         </div>
         
      );
