@@ -57,7 +57,9 @@ const DonateContainer = (props) => {
             </div>
           </div>
         </div>
-      {searchResults}
+      <div id="donateResults">
+        {searchResults}
+      </div>
       </div>
     </div>
   )
